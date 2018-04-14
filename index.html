@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name='viewport' content='width=device-width'/>
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_608964_0g62x1xpkap833di.css" />
+		<script src='js/rem.js'></script>
+		<script src="js/jquery.min.js"></script>
+		<script src='js/index.js'></script>
+	</head>
+	<body>
+		<!--header start-->
+		<header>
+			<div class="city">北京</div>
+			<div class="pollute">
+				<p>空气</p>
+				<p>轻度污染</p>
+			</div>
+			<div class="degree">10°</div>
+			<div class="weather">晴</div>
+			<div class="humidity">
+				<span>湿度</span>
+				<span class='h-number'>57%</span>
+			</div>
+			<div class="tips">
+				你若安好，便是晴天~
+			</div>
+		</header>
+		<!--header start-->
+		
+		<!--今明两天天气 开始-->
+		<section class='twodays'>
+			<div class="days">
+				<div class="days-box">
+					<div class="today">
+						<div class="t-top">
+							<div class="t-top-l">今天</div>
+							<div class="t-top-r">
+								<span>17</span>
+								<span>/</span>
+								<span>3°</span>
+							</div>
+						</div>
+						<div class="t-bottom">
+							<div class="t-bottom-l">晴转多云</div>
+							<div class="t-bottom-r"></div>
+						</div>
+					</div>
+					<div class="tomorrow">
+						<div class="t-top">
+							<div class="t-top-l">明天</div>
+							<div class="t-top-r">
+								<span>12</span>
+								<span>/</span>
+								<span>-2°</span>
+							</div>
+						</div>
+						<div class="t-bottom">
+							<div class="t-bottom-l">多云</div>
+							<div class="t-bottom-r"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--今明两天天气 结束-->
+		
+		<!--24小时天气 开始-->
+		<section class='hours'>
+			<ul class="detailed">
+				
+				<!--<li class='d-list'>
+					<p class='time'>21:00</p>
+					<p class='pic'></p>
+					<p class='temp'>9°</p>
+				</li>-->
+			</ul>
+		</section>
+		<!--24小时天气 结束-->
+		
+		<!--近期天气情况 开始-->
+		<section class='recent'>
+			<div class="r-box">
+				<ul>
+					<!--<li>
+						<p class ='timeH'>
+							<span>03</span>
+							<span>/</span>
+							<span>21</span>
+						</p>
+						<p class='weatherH'>多云</p>
+						//<p class='picH'></p>						
+						<p class="temperatureH">28°</p>
+						<p class="temperatureL">3°</p>
+						<p class='picL'></p>
+						<p class='weatherL'>小雨</p>
+						<p class='windL'>南风</p>
+						<p class='wind-num'>3级</p>
+					</li>-->
+				</ul>
+			</div>
+		</section>
+		<!--近期天气情况 结束-->
+		
+		<section class="sever">
+			<ul class='list1'>
+				<li>
+					<p>
+						<i class="iconfont icon-icon"></i>
+					</p>
+					<p>3和8</p>
+					<p>尾号限行</p>
+				</li>
+				
+				<li>
+					<p>
+						<i class="iconfont icon-tubiao- shangyi"></i>
+					</p>
+					<p>较冷</p>
+					<p>穿衣</p>
+				</li>
+				<li>
+					<p>
+						<i class="iconfont icon-yusan"></i>
+					</p>
+					<p>不带伞</p>
+					<p>雨伞</p>
+				</li>
+				<li>
+					<p>
+						<i class="iconfont icon-yaowan"></i>
+					</p>
+					<p>较易发</p>
+					<p>感冒</p>
+				</li>
+			</ul>
+			<ul class='list2'>
+				<li>
+					<p>
+						<i class="iconfont icon-xiche"></i>
+					</p>
+					<p>较适宜</p>
+					<p>洗车</p>
+				</li>
+				
+				<li>
+					<p>
+						<i class="iconfont icon-yundongzuqiu"></i>
+					</p>
+					<p>适宜</p>
+					<p>运动</p>
+				</li>
+				<li>
+					<p>
+						<i class="iconfont icon-iconset0451"></i>
+					</p>
+					<p>较弱</p>
+					<p>防晒</p>
+				</li>
+				<li>
+					<p>
+						<i class="iconfont icon-yu"></i>
+					</p>
+					<p>适宜</p>
+					<p>钓鱼</p>
+				</li>
+			</ul>
+		</section>
+		<footer>
+			<p>数据来源于中国天气网</p>
+			<p>Copyright 1998 - 2018</p>
+			<p>Auther:wzc</p>
+			
+		</footer>
+		
+		
+		<!--选择城市 开始-->
+		<!--搜索框开始-->
+		<section class="city-option">
+			<div class="city-box">
+				<div class="search">
+					<div class="s-left clearfix">
+						<input type="text" placeholder="搜索地区/景点"/>
+						<i class='iconfont icon-sousuo'></i>
+					</div>
+					<div class="s-right">取消</div>
+				</div>
+				<!--搜索框结束-->
+				
+				<!--城市列表 开始-->
+				<div class="city-list" id='city'>
+					<p>热门城市</p>
+					<ul>				
+						<li>北京</li>
+						<li>上海</li>
+						<li>广州</li>
+						<li>深圳</li>
+						<li>杭州</li>
+						<li>天津</li>
+						<li>重庆</li>
+						<li>成都</li>
+						<li>武汉</li>						
+					</ul>
+				</div>
+			</div>
+			<!--城市列表 结束-->
+		</section>												
+		<!--选择城市 结束-->				
+	</body>
+</html>
