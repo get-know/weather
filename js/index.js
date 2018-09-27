@@ -2,7 +2,7 @@
 //请求北京数据
 var weather;
 $.ajax({
-	url:'https://www.toutiao.com/stream/widget/local_weather/data/?city=北京',
+	url:'https://www.toutiao.com/stream/widget/local_weather/data/?city',
 	dataType:'jsonp',
 	type:'get',
 	success:function(obj){
@@ -63,7 +63,8 @@ function change(){
 		aTomTe = document.querySelectorAll('.tomorrow .t-top span'),
 		oTomWe = document.querySelector('.tomorrow .t-bottom-l'),
 		oTodImg = document.querySelector('.today .t-bottom-r'),
-		oTomImg = document.querySelector('.tomorrow .t-bottom-r');
+		oTomImg = document.querySelector('.tomorrow .t-bottom-r'),
+        oHistoryList = document.querySelector('.history-list');
 	
 		//城市名称
 		oCity.innerHTML = weather.city_name+"市" +'<span>[切换城市]</span>';
@@ -113,6 +114,7 @@ function change(){
 		for( var i in weather.forecast_list){
 			var oUl = document.querySelector('.r-box ul'),
 				oLi = document.querySelector('.r-box ul li');				//创建li
+
 				var str = '';
 					str += '<li>';		                                   //2018-04-01
 					str	+= '<p class="timeH">'+weather.forecast_list[i].date.slice(5,7) +'/'+weather.forecast_list[i].date.slice(8)+'</p>';
@@ -129,6 +131,7 @@ function change(){
 }
 
 function aJax(str){
+
 	var oUrl = `https://www.toutiao.com/stream/widget/local_weather/data/?city=${str}`;
 	$.ajax({
 	url:oUrl,
@@ -166,17 +169,41 @@ function again(){
 			var liCon = this.innerHTML;
 			//console.log(index);
 			//console.log(this);
-			aJax(liCon);			
+			aJax(liCon);
+			addHistory(liCon);
+
 		}
 	}
+}
+function addHistory(liCon){
+    //点击对应的城市，添加的搜索记录中去
+    let oHistoryList = document.querySelector('.history-list'),
+        aHistoryLi = document.querySelectorAll('.history-list li'),
+        arr = [];
+    for(let i=0;i<aHistoryLi.length;i++){
+        arr.push( aHistoryLi[i].innerHTML );
+    }
+
+    let bool=arr.includes(liCon);
+    console.log(bool)
+    if( !bool ){
+        setTimeout(function(){
+            oHistoryList.innerHTML += `<li>${liCon}</li>`;
+        },1000)
+    }
 }
 function search(){
 	var oCity = document.getElementsByClassName('city')[0],
 				oCityOpt = document.getElementsByClassName('city-option')[0],
 				oBack = document.getElementsByClassName('s-right')[0],
 				oInp = document.querySelector('.city-box .s-left input'),
-				oBtn = document.querySelector('.city-box .s-right');
-				
+				oBtn = document.querySelector('.city-box .s-right'),
+				oDelete = document.querySelector('.city-list .del'),
+				oHistoryList = document.querySelector('.history-list');
+
+				oDelete.onclick = function(){
+					oHistoryList.innerHTML = '';
+				}
 				oCity.onclick = function(){
 					//alert(oCityOpt.className);
 					if(oCityOpt.className === 'city-option'){
@@ -195,19 +222,23 @@ function search(){
 					}else{
 						//用来保存用户输入框输入的城市
 						var oTxt = oInp.value;
-						//二次遍历得到所有城市名
-						for(i in city){
+
+                        //二次遍历得到所有城市名
+                        for(i in city){
 							for(j in city[i]){
 								//判断用户输入的城市名是否与遍历的城市名一样
 								if(oTxt == j || oTxt == j+'市' ){
-									aJax(j);										
-									oInp.value = '';	
+									aJax(j);
+
+									oInp.value = '';
+                                    oHistoryList.innerHTML += `<li>${oTxt}</li>`;
+                                    addHistory(oTxt);
 									return;									
 								}else{
 									oBtn.innerHTML = '取消';
 									oInp.value = '';
 								}
-							}									
+							}
 						}
 						alert("没有该城市！");
 					}
@@ -216,6 +247,6 @@ function search(){
 window.onload = function(){
 	change();
 	again();
-	search();	
+	search();
 }
 
